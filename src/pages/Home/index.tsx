@@ -5,6 +5,7 @@ import { ProductList } from './styles';
 import { api } from '../../services/api';
 import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
+import { size } from 'polished';
 
 interface Product {
   id: number;
@@ -22,12 +23,28 @@ interface CartItemsAmount {
 }
 
 const Home = (): JSX.Element => {
-  // const [products, setProducts] = useState<ProductFormatted[]>([]);
-  // const { addProduct, cart } = useCart();
+  const [products, setProducts] = useState<ProductFormatted[]>([]);
+  const { addProduct, cart } = useCart();
 
-  // const cartItemsAmount = cart.reduce((sumAmount, product) => {
-  //   // TODO
-  // }, {} as CartItemsAmount)
+  const cartItemsAmount = cart.reduce((sumAmount, product) => {
+    /*  
+    if(transaction.type === 'deposit') {
+      acc.deposits += transaction.amount;
+      acc.total += transaction.amount;
+    }else {
+      acc.withdraws += transaction.amount;
+      acc.total -= transaction.amount;
+    }
+    return acc;
+  },{
+    deposits: 0,
+    withdraws: 0,
+    total: 0
+    */
+    sumAmount += product.amount
+   }, {
+     
+   } as CartItemsAmount)
 
   useEffect(() => {
     async function loadProducts() {
